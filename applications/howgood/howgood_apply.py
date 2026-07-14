@@ -22,6 +22,7 @@ from typing import Any
 
 
 ENDPOINT = "https://howgood-apply-api.howgood.workers.dev/apply"
+USER_AGENT = "HowGood-Application/1.0"
 SIGNING_SECRET_ENV = "HOWGOOD_APPLICATION_SECRET"
 APPROVAL_ENV = "HOWGOOD_ALLOW_SUBMIT"
 APPROVAL_VALUE = "I_HAVE_EXPLICIT_APPROVAL"
@@ -127,6 +128,7 @@ def submit(body: bytes, signature: str) -> tuple[int, str]:
         headers={
             "Content-Type": "application/json",
             "X-HMAC-Signature": signature,
+            "User-Agent": USER_AGENT,
         },
     )
     try:
